@@ -2,14 +2,12 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title>Your Bag</title>
+    <title>Balls Main</title>
   </head>
   <body>
-    <h1>Hello <%=@user.username%>!</h1>
+    <h1>Here are a list of all the balls that exist in players' arsenals:</h1>
     <br>
-    <h3>These are the balls in your bag:</h3>
-    <br>
-    <% @user.balls.each do |ball| %>
+    <% @balls.each do |ball| %>
     <li><a href="/balls/<%=ball.id%>"><%=ball.brand%> <%=ball.name%></a></li>
     <% end %>
   </body>
