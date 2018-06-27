@@ -12,6 +12,11 @@ class BallsController < ApplicationController
     end
   end
 
+  get '/balls/:id' do
+    @ball = Ball.find(params[:id])
+    erb :'/balls/show'
+  end
+
   post '/balls' do
     if params[:name].empty? || params[:brand].empty? || params[:color].empty? || params[:weight].empty? || params[:coverstock].empty? || params[:release_date].empty?
       redirect '/balls/new'

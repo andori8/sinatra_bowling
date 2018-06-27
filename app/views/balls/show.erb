@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>Ball information</title>
+  </head>
+  <body>
+    <h1><%=@ball.brand %> <%=@ball.name%>'s Specs:</h1><br>
+    <h3>Color: <%=@ball.color%></h3>
+    <h3>Weight: <%=@ball.weight%></h3>
+    <h3>Coverstock: <%=@ball.coverstock%></h3>
+    <h3>Release date: <%=@ball.release_date%></h3>
+    <br><br>
+    <p><a href="/balls/<%=@ball.id%>/edit">Edit ball</a></p>
+    <p><a href="/balls/<%=@ball.id%>/delete">Delete ball</a></p>
+  </body>
+</html>
