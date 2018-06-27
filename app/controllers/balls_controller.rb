@@ -1,6 +1,7 @@
 class BallsController < ApplicationController
   get '/balls' do
     @balls = Ball.all
+    @user = User.find(session[:user_id])
     erb :'/balls/index'
   end
 
@@ -43,6 +44,15 @@ class BallsController < ApplicationController
       end
     else
       redirect '/balls'
+    end
+  end
+
+  delete '/balls/:id/delete' do
+    @ball = current_user.balls.find(params[:id])
+    if @ball && @ball.destroy
+      redirect '/balls'
+    else
+      redirect "/balls/#{params[:id]}"
     end
   end
 end

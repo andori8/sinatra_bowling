@@ -10,5 +10,7 @@
     <% @balls.each do |ball| %>
     <li><a href="/balls/<%=ball.id%>"><%=ball.brand%> <%=ball.name%></a></li><br>
     <% end %>
+
+    <p><a href="/users/<%=@user.slug%>">Go to your bag</a></p>
   </body>
 </html>
