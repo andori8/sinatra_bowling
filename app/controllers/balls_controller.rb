@@ -1,8 +1,12 @@
 class BallsController < ApplicationController
   get '/balls' do
-    @balls = Ball.all
-    @user = User.find(session[:user_id])
-    erb :'/balls/index'
+    if logged_in?
+      @balls = Ball.all
+      @user = User.find(session[:user_id])
+      erb :'/balls/index'
+    else
+      redirect '/login'
+    end
   end
 
   get '/balls/new' do
@@ -14,13 +18,21 @@ class BallsController < ApplicationController
   end
 
   get '/balls/:id' do
-    @ball = Ball.find(params[:id])
-    erb :'/balls/show'
+    if logged_in?
+      @ball = Ball.find(params[:id])
+      erb :'/balls/show'
+    else
+      redirect '/login'
+    end
   end
 
   get '/balls/:id/edit' do
-    @ball = Ball.find(params[:id])
-    erb :'/balls/edit'
+    if logged_in?
+      @ball = Ball.find(params[:id])
+      erb :'/balls/edit'
+    else
+      redirect '/login'
+    end
   end
 
   post '/balls' do
