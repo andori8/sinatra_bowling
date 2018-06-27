@@ -11,6 +11,8 @@
     <br>
     <% @user.balls.each do |ball| %>
     <li><a href="/balls/<%=ball.id%>"><%=ball.brand%> <%=ball.name%></a></li>
+    <p><a href="/balls/<%=ball.id%>/edit">Edit</a></p>
+    <p><a href="/balls/<%=ball.id%>/delete">Delete</a></p>
     <% end %>
   </body>
 </html>
