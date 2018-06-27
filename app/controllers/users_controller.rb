@@ -7,6 +7,11 @@ class UsersController < ApplicationController
     erb :'/users/login'
   end
 
+  get '/users/:slug' do
+    @user = User.find_by_slug(params[:slug])
+    erb :'/users/show'
+  end
+
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
       redirect '/signup'
