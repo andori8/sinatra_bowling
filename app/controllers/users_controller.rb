@@ -3,10 +3,6 @@ class UsersController < ApplicationController
     erb :'/users/signup'
   end
 
-  get '/users/show' do
-
-  end
-
   post '/signup' do
     if params[:username].empty? || params[:email].empty? || params[:password].empty?
       redirect '/signup'
