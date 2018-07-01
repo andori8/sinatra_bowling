@@ -1,10 +1,14 @@
+require 'rack-flash'
 class BallsController < ApplicationController
+  use Rack::Flash
+
   get '/balls' do
     if logged_in?
       @balls = Ball.all
       @user = User.find(session[:user_id])
       erb :'/balls/index'
     else
+      flash[:message] = "Please log in."
       redirect '/login'
     end
   end
@@ -13,6 +17,7 @@ class BallsController < ApplicationController
     if logged_in?
       erb :'/balls/new'
     else
+      flash[:message] = "Please log in."
       redirect '/login'
     end
   end
@@ -22,6 +27,7 @@ class BallsController < ApplicationController
       @ball = Ball.find(params[:id])
       erb :'/balls/show'
     else
+      flash[:message] = "Please log in."
       redirect '/login'
     end
   end
@@ -31,6 +37,7 @@ class BallsController < ApplicationController
       @ball = Ball.find(params[:id])
       erb :'/balls/edit'
     else
+      flash[:message] = "Please log in."
       redirect '/login'
     end
   end
