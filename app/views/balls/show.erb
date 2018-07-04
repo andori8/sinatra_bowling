@@ -1,3 +1,8 @@
+<% if flash.has?(:message) %>
+<div style="border: 2px solid red;">
+  <%= flash[:message] %>
+</div>
+<% end %>
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -12,6 +17,9 @@
     <h3>Release date: <%=@ball.release_date%></h3>
     <br><br>
     <p><a href="/balls/<%=@ball.id%>/edit">Edit ball</a></p>
-    <p><a href="/balls/<%=@ball.id%>/delete">Delete ball</a></p>
+    <form action="/balls/<%=@ball.id%>/delete" method="POST">
+      <input id="hidden" type="hidden" name="_method" value="delete">
+      <input type="submit" value="Delete ball">
+    </form>
   </body>
 </html>

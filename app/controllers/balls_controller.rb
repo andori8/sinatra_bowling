@@ -33,9 +33,15 @@ class BallsController < ApplicationController
   end
 
   get '/balls/:id/edit' do
+    @ball = Ball.find(params[:id])
     if logged_in?
-      @ball = Ball.find(params[:id])
-      erb :'/balls/edit'
+      if current_user == @ball.user
+        @ball = Ball.find(params[:id])
+        erb :'/balls/edit'
+      else
+        flash[:message] = "You are not allowed to edit that ball."
+        redirect '/balls'
+      end
     else
       flash[:message] = "Please log in."
       redirect '/login'
@@ -67,10 +73,12 @@ class BallsController < ApplicationController
   end
 
   delete '/balls/:id/delete' do
-    @ball = current_user.balls.find(params[:id])
-    if @ball && @ball.destroy
+    @ball = Ball.find(params[:id])
+    if current_user.balls.include?(@ball)
+      @ball.destroy
       redirect '/balls'
     else
+      flash[:message] = "You are not allowed to delete that ball."
       redirect "/balls/#{params[:id]}"
     end
   end
