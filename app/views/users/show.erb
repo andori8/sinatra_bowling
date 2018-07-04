@@ -11,11 +11,6 @@
     <br>
     <% @user.balls.each do |ball| %>
     <li><a href="/balls/<%=ball.id%>"><%=ball.brand%> <%=ball.name%></a></li>
-    <p><a href="/balls/<%=ball.id%>/edit">Edit</a></p>
-    <form action="/balls/<%=ball.id%>/delete" method="POST">
-      <input id="hidden" type="hidden" name="_method" value="delete">
-      <input type="submit" value="delete">
-    </form>
     <% end %>
     <p><a href="/balls/new">Add ball</a></p>
   </body>
